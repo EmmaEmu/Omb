@@ -6,6 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <Target Name="DownloadPackages" BeforeTargets="Build">
+    <PropertyGroup>
+        <PackagesDir>$(MSBuildProjectDirectory)/packages</PackagesDir>
+    </PropertyGroup>
+
+    <DownloadFile
+      SourceUrl="https://github.com/EmmaEmu/SapList/releases/download/v1.0.6/SapList.1.0.0.nupkg"
+      DestinationFolder="$(PackagesDir)" />
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="SapList" Version="1.0.0" />
   </ItemGroup>
