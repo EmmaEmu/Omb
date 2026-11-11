@@ -4,15 +4,24 @@ namespace Omb;
 
 public class Omb
 {
-    private Dictionary<Type, nint> _volatilePool = new();
+    private Dictionary<Type, SapList<object>> _volatilePool = new();
     private List<object> _uniquePool = new();
 
-    public void Spawn<T>()
+    public void Spawn<T>(T node, bool isVolatile = false) where T: notnull
     {
-        var nodeType = typeof(T);
-        if (!_volatilePool.ContainsKey(nodeType))
-        {
-            _ = new SapList<T>(0);
+            var storage = _uniquePool;
+
+        if (isVolatile) {
+            var nodeType = typeof(T);
+
+            // Create a list to store this node type if one does not exist yet.
+            if (!_volatilePool.ContainsKey(nodeType))
+            {
+                var list = new SapList<T>();
+                //_volatilePool.Add(nodeType,);
+            }
         }
+
+        storage.Add(node);
     }
 }
