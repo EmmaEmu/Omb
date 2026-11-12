@@ -4,13 +4,10 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackagesDir>$(MSBuildProjectDirectory)/packages</PackagesDir>
   </PropertyGroup>
 
-  <Target Name="DownloadPackages" BeforeTargets="Build">
-    <PropertyGroup>
-        <PackagesDir>$(MSBuildProjectDirectory)/packages</PackagesDir>
-    </PropertyGroup>
-
+  <Target Name="DownloadPackages" BeforeTargets="Restore;Build">
     <DownloadFile
       SourceUrl="https://github.com/EmmaEmu/SapList/releases/download/v1.0.1-again/SapList.1.0.1.nupkg"
       DestinationFolder="$(PackagesDir)" />
